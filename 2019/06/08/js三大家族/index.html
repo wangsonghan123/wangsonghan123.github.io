@@ -1,0 +1,214 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>js三大家族 | 王宋晗的博客</title><meta name="author" content="王宋晗"><meta name="copyright" content="王宋晗"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="1. 三大家族和一个事件对象三大家族（offset&#x2F;scroll&#x2F;client） 事件对象&#x2F;event （事件被触动时，鼠标和键盘的状态）（通过属性控制） 2. Offset家族简介offset这个单词本身是–偏移，补偿，位移的意思。 js中有一套方便的获取元素尺寸的办法就是offset家族； offsetWidth和offsetHight以及offsetLeft和offsetTop以及offse">
+<meta property="og:type" content="article">
+<meta property="og:title" content="js三大家族">
+<meta property="og:url" content="http://example.com/2019/06/08/js%E4%B8%89%E5%A4%A7%E5%AE%B6%E6%97%8F/index.html">
+<meta property="og:site_name" content="王宋晗的博客">
+<meta property="og:description" content="1. 三大家族和一个事件对象三大家族（offset&#x2F;scroll&#x2F;client） 事件对象&#x2F;event （事件被触动时，鼠标和键盘的状态）（通过属性控制） 2. Offset家族简介offset这个单词本身是–偏移，补偿，位移的意思。 js中有一套方便的获取元素尺寸的办法就是offset家族； offsetWidth和offsetHight以及offsetLeft和offsetTop以及offse">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://desk-fd.zol-img.com.cn/t_s144x90c5/g5/M00/0D/0D/ChMkJl3eNAqICqRbAATlHsoXhDcAAvcywDnRrMABOU2229.jpg">
+<meta property="article:published_time" content="2019-06-08T01:44:26.000Z">
+<meta property="article:modified_time" content="2021-03-25T00:54:11.054Z">
+<meta property="article:author" content="王宋晗">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://desk-fd.zol-img.com.cn/t_s144x90c5/g5/M00/0D/0D/ChMkJl3eNAqICqRbAATlHsoXhDcAAvcywDnRrMABOU2229.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://example.com/2019/06/08/js%E4%B8%89%E5%A4%A7%E5%AE%B6%E6%97%8F/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    jQuery: 'https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js',
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+    },
+    fancybox: {
+      js: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isanchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = { 
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2021-03-25 08:54:11'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    })(window)</script><meta name="generator" content="Hexo 5.4.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="author-avatar"><img class="avatar-img" src="/img/head_portrait.jpeg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data"><div class="data-item is-center"><div class="data-item-link"><a href="/archives/"><div class="headline">文章</div><div class="length-num">21</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/tags/"><div class="headline">标签</div><div class="length-num">4</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 娱乐</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></li><li><a class="site-page" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 电影</span></a></li></ul></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://desk-fd.zol-img.com.cn/t_s144x90c5/g5/M00/0D/0D/ChMkJl3eNAqICqRbAATlHsoXhDcAAvcywDnRrMABOU2229.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">王宋晗的博客</a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 娱乐</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></li><li><a class="site-page" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 电影</span></a></li></ul></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">js三大家族</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2019-06-08T01:44:26.000Z" title="发表于 2019-06-08 09:44:26">2019-06-08</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2021-03-25T00:54:11.054Z" title="更新于 2021-03-25 08:54:11">2021-03-25</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h2 id="1-三大家族和一个事件对象"><a href="#1-三大家族和一个事件对象" class="headerlink" title="1. 三大家族和一个事件对象"></a>1. 三大家族和一个事件对象</h2><p>三大家族（offset/scroll/client）</p>
+<p>事件对象/event （事件被触动时，鼠标和键盘的状态）（通过属性控制）</p>
+<h2 id="2-Offset家族简介"><a href="#2-Offset家族简介" class="headerlink" title="2. Offset家族简介"></a>2. Offset家族简介</h2><p>offset这个单词本身是–偏移，补偿，位移的意思。</p>
+<p>js中有一套方便的获取元素尺寸的办法就是offset家族；</p>
+<p>offsetWidth和offsetHight以及offsetLeft和offsetTop以及offsetParent</p>
+<p>共同组成了offset家族。</p>
+<h4 id="2-1-offsetWidth和offsetHight-（检测盒子自身宽高-padding-border）"><a href="#2-1-offsetWidth和offsetHight-（检测盒子自身宽高-padding-border）" class="headerlink" title="2.1 offsetWidth和offsetHight （检测盒子自身宽高+padding+border）"></a>2.1 offsetWidth和offsetHight （检测盒子自身宽高+padding+border）</h4><p>这两个属性，他们绑定在了所有的节点元素上。获取之后，只要调用这两个属性，我们就能够获取元素节点的宽和高。</p>
+<p>offset宽/高 = 盒子自身的宽/高 + padding+border；</p>
+<p>offsetWidth =width+padding+border；</p>
+<p>offsetHeight =Height+padding+border；</p>
+<h4 id="2-2-offsetLeft和offsetTop-（检测距离父盒子有定位的左-上面的距离）"><a href="#2-2-offsetLeft和offsetTop-（检测距离父盒子有定位的左-上面的距离）" class="headerlink" title="2.2 offsetLeft和offsetTop （检测距离父盒子有定位的左/上面的距离）"></a>2.2 offsetLeft和offsetTop （检测距离父盒子有定位的左/上面的距离）</h4><p>返回距离上级盒子（带有定位）左边s的位置</p>
+<p>如果父级都没有定位则以body为准</p>
+<p>offsetLeft 从父亲的padding 开始算,父亲的border 不算。</p>
+<p>在父盒子有定位的情况下，offsetLeft == style.left(去掉px)</p>
+<h4 id="2-3-offsetParent-（检测父系盒子中带有定位的父盒子节点）"><a href="#2-3-offsetParent-（检测父系盒子中带有定位的父盒子节点）" class="headerlink" title="2.3 offsetParent （检测父系盒子中带有定位的父盒子节点）"></a>2.3 offsetParent （检测父系盒子中带有定位的父盒子节点）</h4><p>1、返回改对象的父级 （带有定位）</p>
+<p>​ 如果当前元素的父级元素没有进行CSS定位 （position为absolute或 relative，fixed）， offsetParent为body。</p>
+<p>2、如果当前元素的父级元素中有CSS定位 （position为absolute或 relative，fixed）， offsetParent取最近的那个父级元素。</p>
+<h2 id="3-offsetLeft和style-left区别"><a href="#3-offsetLeft和style-left区别" class="headerlink" title="3. offsetLeft和style.left区别"></a>3. offsetLeft和style.left区别</h2><p>一、最大区别在于offsetLeft可以返回没有定位盒子的距离左侧的位置。而 style.left不可以</p>
+<p>二、offsetTop 返回的是数字，而 style.top 返回的是字符串，除了数字外还带有单位：px。</p>
+<p>三、offsetTop 只读，而 style.top 可读写。（只读是获取值，可写是赋值）</p>
+<p>四、如果没有给 HTML 元素指定过 top 样式，则style.top 返回的是空字符串。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">style.left在=的左边和右边还不一样。（左边的时候是属性，右边的时候是值）</span><br></pre></td></tr></table></figure>
+
+<h2 id="4-Scroll家族组成"><a href="#4-Scroll家族组成" class="headerlink" title="4. Scroll家族组成"></a>4. Scroll家族组成</h2><p>ScrollWidth和scrollHeight（不包括border）</p>
+<p>检测盒子的宽高。（调用者：节点元素。属性。）</p>
+<p>盒子内容的宽高。（如果有内容超出了，显示内容的高度）</p>
+<p>IE567可以比盒子小。 IE8+火狐谷歌不能比盒子小</p>
+<h4 id="4-1-scrollLeft和scrollTop"><a href="#4-1-scrollLeft和scrollTop" class="headerlink" title="4.1 scrollLeft和scrollTop"></a>4.1 scrollLeft和scrollTop</h4><p>网页，被浏览器遮挡的头部和左边部分。</p>
+<p>被卷去的头部和左边部分。</p>
+<p>兼容性问题</p>
+<p>一、未声明 DTD（谷歌只认识他）</p>
+<p>document.body.scrollTop</p>
+<p>二、已经声明DTD（IE678只认识他）</p>
+<p>document.documentElement.scrollTop</p>
+<p>三、火狐/谷歌/ie9+以上支持的</p>
+<p>window.pageYOffset</p>
+<h4 id="4-2-兼容写法"><a href="#4-2-兼容写法" class="headerlink" title="4.2 兼容写法"></a>4.2 兼容写法</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> aaa = <span class="built_in">window</span>.pageYOffset || <span class="built_in">document</span>.documentElement.scrollTop || <span class="built_in">document</span>.body.scrollTop || <span class="number">0</span>;</span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> aaa = <span class="built_in">document</span>.documentElement.scrollTop + <span class="built_in">document</span>.body.scrollTop;</span><br></pre></td></tr></table></figure>
+
+<h4 id="4-3-事件event"><a href="#4-3-事件event" class="headerlink" title="4.3 事件event"></a>4.3 事件event</h4><h5 id="4-3-1-事件对象的获取（event的获取）"><a href="#4-3-1-事件对象的获取（event的获取）" class="headerlink" title="4.3.1 事件对象的获取（event的获取）"></a>4.3.1 事件对象的获取（event的获取）</h5><p>IE678中，window.event</p>
+<p>在火狐谷歌中，event或者，在事件绑定的函数中，加参，这个参数就是event.</p>
+<p>Box.onclick = function (aaa){ aaa就是event }</p>
+<h5 id="4-3-2-兼容获取方式有两种："><a href="#4-3-2-兼容获取方式有两种：" class="headerlink" title="4.3.2 兼容获取方式有两种："></a>4.3.2 兼容获取方式有两种：</h5><p>不写参数直接使用event;</p>
+<p>写参数，但是为event….var event = event || window.event;(主要用这种)</p>
+<h5 id="4-3-3-event内容重要内容"><a href="#4-3-3-event内容重要内容" class="headerlink" title="4.3.3 event内容重要内容"></a>4.3.3 event内容重要内容</h5><p>PageY/pageX: 鼠标位于整个网页页面的顶部和左侧部分的距离。（页面）</p>
+<p>ScreenY/screenX: 鼠标位于屏幕的上方和左侧的距离。（屏幕）</p>
+<p>ClientX/clientY: 鼠标位于浏览器的左侧和顶部的距离。（浏览器大小和位置）</p>
+<h5 id="4-3-4-PageY和pageX的兼容写法（很重要）"><a href="#4-3-4-PageY和pageX的兼容写法（很重要）" class="headerlink" title="4.3.4 PageY和pageX的兼容写法（很重要）"></a>4.3.4 PageY和pageX的兼容写法（很重要）</h5><p>在页面位置就等于 = 看得见的+看不见的</p>
+<p>pageY/pageX=event.clientY/clientX+scroll().top/scroll().left</p>
+<h2 id="5-client家族"><a href="#5-client家族" class="headerlink" title="5. client家族"></a>5. client家族</h2><h4 id="5-1-主要成员"><a href="#5-1-主要成员" class="headerlink" title="5.1 主要成员"></a>5.1 主要成员</h4><p>1、clientWidth 获取网页可视区域宽度（两种用法）</p>
+<p>clientHeight 获取网页可视区域高度（两种用法）</p>
+<p>调用者不同，意义不同：</p>
+<p>​ 盒子调用： 指盒子本身。</p>
+<p>​ body/html调用： 可视区域大小。</p>
+<p>2、clientX 鼠标距离可视区域左侧距离（event调用）</p>
+<p>clientY 鼠标距离可视区域上侧距离（event调用）</p>
+<p>3、clientTop/clientLeft 盒子的border宽高</p>
+<h4 id="5-2-三大家族区别（三大家族总结）"><a href="#5-2-三大家族区别（三大家族总结）" class="headerlink" title="5.2 三大家族区别（三大家族总结）"></a>5.2 三大家族区别（三大家族总结）</h4><h5 id="5-2-1-Width和height"><a href="#5-2-1-Width和height" class="headerlink" title="5.2.1 Width和height"></a>5.2.1 Width和height</h5><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">clientWidth = width + padding</span><br><span class="line"></span><br><span class="line">clientHeight = height + padding</span><br><span class="line"></span><br><span class="line">offsetWidth = width + padding + border</span><br><span class="line"></span><br><span class="line">offsetHeight = height + padding + border</span><br><span class="line"></span><br><span class="line">scrollWidth = 内容宽度（不包含border）width + padding</span><br><span class="line"></span><br><span class="line">scrollHeight = 内容高度（不包含border）</span><br></pre></td></tr></table></figure>
+<h5 id="5-2-1-top和left"><a href="#5-2-1-top和left" class="headerlink" title="5.2.1 top和left"></a>5.2.1 top和left</h5><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">offsetTop/offsetLeft：</span><br><span class="line"></span><br><span class="line">​ 调用者：任意元素。(盒子为主)</span><br><span class="line"></span><br><span class="line">​ 作用：距离父系盒子中带有定位的距离。</span><br><span class="line"></span><br><span class="line">scrollTop/scrollLeft:(盒子也可以调用，必须有滚动条)</span><br><span class="line"></span><br><span class="line">​ 调用者：<span class="built_in">document</span>.body.scrollTop/…..(<span class="built_in">window</span>)</span><br><span class="line"></span><br><span class="line">​ 作用：浏览器无法显示的部分（被卷去的部分）。</span><br><span class="line"></span><br><span class="line">clientY/clientX:（clientTop/clientLeft 值的是border）</span><br><span class="line"></span><br><span class="line">​ 调用者：event.clientX(event)</span><br><span class="line"></span><br><span class="line">​ 作用：鼠标距离浏览器可视区域的距离（左、上）。</span><br><span class="line"></span><br><span class="line"><span class="comment">// width和height</span></span><br><span class="line"><span class="comment">// offset带border</span></span><br><span class="line"><span class="comment">// scroll不带border，内容的宽高</span></span><br><span class="line"><span class="comment">// client不带border</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// top和left</span></span><br><span class="line"><span class="comment">// offset距离父系盒子带有定位的盒子之间的距离</span></span><br><span class="line"><span class="comment">// scroll被卷去的部分的距离</span></span><br><span class="line"><span class="comment">// clientborder的宽高</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//clientX和clientY</span></span><br><span class="line"><span class="comment">// event调用，鼠标距离浏览器的可视区域的距离</span></span><br></pre></td></tr></table></figure>
+<h4 id="5-3-Onresize事件"><a href="#5-3-Onresize事件" class="headerlink" title="5.3  Onresize事件"></a>5.3  Onresize事件</h4><p>只要浏览器的大小改变，哪怕1像素，都会触动这个事件。</p>
+<h4 id="5-4-事件总结"><a href="#5-4-事件总结" class="headerlink" title="5.4  事件总结"></a>5.4  事件总结</h4><p>区分：</p>
+<p>1.window.onscroll 屏幕滑动</p>
+<p>2.window.onresize 浏览器大小变化</p>
+<p>3.window.onload 页面加载完毕</p>
+<p>4.div.onmousemove 鼠标在盒子上移动</p>
+<p>​ （注意：不是盒子移动！！！）</p>
+<p>5.onmouseup/onmousedown == onclick</p>
+<h4 id="5-5-获得屏幕宽高"><a href="#5-5-获得屏幕宽高" class="headerlink" title="5.5  获得屏幕宽高"></a>5.5  获得屏幕宽高</h4><p>window.screen.width</p>
+<p>分辨率是屏幕图像的精密度，指显示器所能显示的像素有多少。</p>
+<p>我们的电脑一般：</p>
+<p>横向1280个像素点，</p>
+<p>纵向960个像素点。</p>
+<p>我们看电影的时候是满屏和半屏的，就是这。</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:undefined">王宋晗</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="http://example.com/2019/06/08/js%E4%B8%89%E5%A4%A7%E5%AE%B6%E6%97%8F/">http://example.com/2019/06/08/js%E4%B8%89%E5%A4%A7%E5%AE%B6%E6%97%8F/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://example.com" target="_blank">王宋晗的博客</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"></div><div class="post_share"><div class="social-share" data-image="https://desk-fd.zol-img.com.cn/t_s144x90c5/g5/M00/0D/0D/ChMkJl3eNAqICqRbAATlHsoXhDcAAvcywDnRrMABOU2229.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2019/09/11/%E7%BB%84%E4%BB%B6props%E7%9A%84children%E5%B1%9E%E6%80%A7%E5%9F%BA%E6%9C%AC%E7%94%A8%E6%B3%95/"><img class="prev-cover" src="https://pic.netbian.com/uploads/allimg/210129/164812-1611910092746d.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">组件props的children属性基本用法</div></div></a></div><div class="next-post pull-right"><a href="/2019/05/19/%E4%BD%BF%E7%94%A8Hexo%E5%92%8CGit%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/"><img class="next-cover" src="https://w.wallhaven.cc/full/9m/wallhaven-9mxz8k.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">使用Hexo和Git搭建个人博客</div></div></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="card-info-avatar is-center"><img class="avatar-img" src="/img/head_portrait.jpeg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/><div class="author-info__name">王宋晗</div><div class="author-info__description"></div></div><div class="card-info-data"><div class="card-info-data-item is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">21</div></a></div><div class="card-info-data-item is-center"><a href="/tags/"><div class="headline">标签</div><div class="length-num">4</div></a></div></div><a class="button--animated" id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/wangsonghan123.github.io"><i class="fab fa-github"></i><span>加入书签</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn card-announcement-animation"></i><span>公告</span></div><div class="announcement_content">博客将持续更新</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-%E4%B8%89%E5%A4%A7%E5%AE%B6%E6%97%8F%E5%92%8C%E4%B8%80%E4%B8%AA%E4%BA%8B%E4%BB%B6%E5%AF%B9%E8%B1%A1"><span class="toc-number">1.</span> <span class="toc-text">1. 三大家族和一个事件对象</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-Offset%E5%AE%B6%E6%97%8F%E7%AE%80%E4%BB%8B"><span class="toc-number">2.</span> <span class="toc-text">2. Offset家族简介</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#2-1-offsetWidth%E5%92%8CoffsetHight-%EF%BC%88%E6%A3%80%E6%B5%8B%E7%9B%92%E5%AD%90%E8%87%AA%E8%BA%AB%E5%AE%BD%E9%AB%98-padding-border%EF%BC%89"><span class="toc-number">2.0.1.</span> <span class="toc-text">2.1 offsetWidth和offsetHight （检测盒子自身宽高+padding+border）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-2-offsetLeft%E5%92%8CoffsetTop-%EF%BC%88%E6%A3%80%E6%B5%8B%E8%B7%9D%E7%A6%BB%E7%88%B6%E7%9B%92%E5%AD%90%E6%9C%89%E5%AE%9A%E4%BD%8D%E7%9A%84%E5%B7%A6-%E4%B8%8A%E9%9D%A2%E7%9A%84%E8%B7%9D%E7%A6%BB%EF%BC%89"><span class="toc-number">2.0.2.</span> <span class="toc-text">2.2 offsetLeft和offsetTop （检测距离父盒子有定位的左&#x2F;上面的距离）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-3-offsetParent-%EF%BC%88%E6%A3%80%E6%B5%8B%E7%88%B6%E7%B3%BB%E7%9B%92%E5%AD%90%E4%B8%AD%E5%B8%A6%E6%9C%89%E5%AE%9A%E4%BD%8D%E7%9A%84%E7%88%B6%E7%9B%92%E5%AD%90%E8%8A%82%E7%82%B9%EF%BC%89"><span class="toc-number">2.0.3.</span> <span class="toc-text">2.3 offsetParent （检测父系盒子中带有定位的父盒子节点）</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-offsetLeft%E5%92%8Cstyle-left%E5%8C%BA%E5%88%AB"><span class="toc-number">3.</span> <span class="toc-text">3. offsetLeft和style.left区别</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-Scroll%E5%AE%B6%E6%97%8F%E7%BB%84%E6%88%90"><span class="toc-number">4.</span> <span class="toc-text">4. Scroll家族组成</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#4-1-scrollLeft%E5%92%8CscrollTop"><span class="toc-number">4.0.1.</span> <span class="toc-text">4.1 scrollLeft和scrollTop</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-2-%E5%85%BC%E5%AE%B9%E5%86%99%E6%B3%95"><span class="toc-number">4.0.2.</span> <span class="toc-text">4.2 兼容写法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-3-%E4%BA%8B%E4%BB%B6event"><span class="toc-number">4.0.3.</span> <span class="toc-text">4.3 事件event</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#4-3-1-%E4%BA%8B%E4%BB%B6%E5%AF%B9%E8%B1%A1%E7%9A%84%E8%8E%B7%E5%8F%96%EF%BC%88event%E7%9A%84%E8%8E%B7%E5%8F%96%EF%BC%89"><span class="toc-number">4.0.3.1.</span> <span class="toc-text">4.3.1 事件对象的获取（event的获取）</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#4-3-2-%E5%85%BC%E5%AE%B9%E8%8E%B7%E5%8F%96%E6%96%B9%E5%BC%8F%E6%9C%89%E4%B8%A4%E7%A7%8D%EF%BC%9A"><span class="toc-number">4.0.3.2.</span> <span class="toc-text">4.3.2 兼容获取方式有两种：</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#4-3-3-event%E5%86%85%E5%AE%B9%E9%87%8D%E8%A6%81%E5%86%85%E5%AE%B9"><span class="toc-number">4.0.3.3.</span> <span class="toc-text">4.3.3 event内容重要内容</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#4-3-4-PageY%E5%92%8CpageX%E7%9A%84%E5%85%BC%E5%AE%B9%E5%86%99%E6%B3%95%EF%BC%88%E5%BE%88%E9%87%8D%E8%A6%81%EF%BC%89"><span class="toc-number">4.0.3.4.</span> <span class="toc-text">4.3.4 PageY和pageX的兼容写法（很重要）</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-client%E5%AE%B6%E6%97%8F"><span class="toc-number">5.</span> <span class="toc-text">5. client家族</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#5-1-%E4%B8%BB%E8%A6%81%E6%88%90%E5%91%98"><span class="toc-number">5.0.1.</span> <span class="toc-text">5.1 主要成员</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#5-2-%E4%B8%89%E5%A4%A7%E5%AE%B6%E6%97%8F%E5%8C%BA%E5%88%AB%EF%BC%88%E4%B8%89%E5%A4%A7%E5%AE%B6%E6%97%8F%E6%80%BB%E7%BB%93%EF%BC%89"><span class="toc-number">5.0.2.</span> <span class="toc-text">5.2 三大家族区别（三大家族总结）</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#5-2-1-Width%E5%92%8Cheight"><span class="toc-number">5.0.2.1.</span> <span class="toc-text">5.2.1 Width和height</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#5-2-1-top%E5%92%8Cleft"><span class="toc-number">5.0.2.2.</span> <span class="toc-text">5.2.1 top和left</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#5-3-Onresize%E4%BA%8B%E4%BB%B6"><span class="toc-number">5.0.3.</span> <span class="toc-text">5.3  Onresize事件</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#5-4-%E4%BA%8B%E4%BB%B6%E6%80%BB%E7%BB%93"><span class="toc-number">5.0.4.</span> <span class="toc-text">5.4  事件总结</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#5-5-%E8%8E%B7%E5%BE%97%E5%B1%8F%E5%B9%95%E5%AE%BD%E9%AB%98"><span class="toc-number">5.0.5.</span> <span class="toc-text">5.5  获得屏幕宽高</span></a></li></ol></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2021/03/11/cookie-session/" title="cookie session"><img src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="cookie session"/></a><div class="content"><a class="title" href="/2021/03/11/cookie-session/" title="cookie session">cookie session</a><time datetime="2021-03-11T14:38:25.000Z" title="发表于 2021-03-11 22:38:25">2021-03-11</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/01/20/%E6%B5%85%E8%B0%88%E5%89%8D%E7%AB%AF%E6%A8%A1%E5%9D%97%E5%8C%96/" title="浅谈前端模块化"><img src="https://desk-fd.zol-img.com.cn/t_s144x90c5/g5/M00/0A/05/ChMkJ1Zfr2GIPcUDAA4sge6qvA4AAFolQPYSd8ADiyZ655.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="浅谈前端模块化"/></a><div class="content"><a class="title" href="/2021/01/20/%E6%B5%85%E8%B0%88%E5%89%8D%E7%AB%AF%E6%A8%A1%E5%9D%97%E5%8C%96/" title="浅谈前端模块化">浅谈前端模块化</a><time datetime="2021-01-20T05:28:39.000Z" title="发表于 2021-01-20 13:28:39">2021-01-20</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2020/11/20/MySql/" title="MySql"><img src="https://desk-fd.zol-img.com.cn/t_s144x90c5/g5/M00/02/00/ChMkJlbKw6aIIwgEAApC8adR_Q4AALG6QOUpfcACkMJ408.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="MySql"/></a><div class="content"><a class="title" href="/2020/11/20/MySql/" title="MySql">MySql</a><time datetime="2020-11-20T12:58:14.000Z" title="发表于 2020-11-20 20:58:14">2020-11-20</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2020/10/20/vue%E4%B8%AD%E8%B7%AF%E7%94%B1%E8%B7%B3%E8%BD%ACview%E5%8D%B4%E4%B8%8D%E6%9B%B4%E6%96%B0%E7%9A%84%E9%97%AE%E9%A2%98%E4%B8%8E%E8%A7%A3%E5%86%B3%E5%8A%9E%E6%B3%95/" title="vue中路由跳转view却不更新的问题与解决办法"><img src="https://desk-fd.zol-img.com.cn/t_s144x90c5/g5/M00/02/0A/ChMkJlbKz3qIZf6CAAMnlgwlzEQAALJVgNT65cAAyeu011.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="vue中路由跳转view却不更新的问题与解决办法"/></a><div class="content"><a class="title" href="/2020/10/20/vue%E4%B8%AD%E8%B7%AF%E7%94%B1%E8%B7%B3%E8%BD%ACview%E5%8D%B4%E4%B8%8D%E6%9B%B4%E6%96%B0%E7%9A%84%E9%97%AE%E9%A2%98%E4%B8%8E%E8%A7%A3%E5%86%B3%E5%8A%9E%E6%B3%95/" title="vue中路由跳转view却不更新的问题与解决办法">vue中路由跳转view却不更新的问题与解决办法</a><time datetime="2020-10-20T11:43:41.000Z" title="发表于 2020-10-20 19:43:41">2020-10-20</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2020/10/13/%E6%B7%B1%E5%BA%A6%E4%BC%98%E5%85%88%E4%B8%8E%E5%B9%BF%E5%BA%A6%E4%BC%98%E5%85%88%E9%81%8D%E5%8E%86DOM-%E9%80%92%E5%BD%92%E4%B8%8E%E9%9D%9E%E9%80%92%E5%BD%92/" title="深度优先与广度优先遍历DOM(递归与非递归)"><img src="https://desk-fd.zol-img.com.cn/t_s144x90c5/g5/M00/02/03/ChMkJlbKxmuIGsjvAA2xZfNs0zoAALHkwOPXU4ADbF9032.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="深度优先与广度优先遍历DOM(递归与非递归)"/></a><div class="content"><a class="title" href="/2020/10/13/%E6%B7%B1%E5%BA%A6%E4%BC%98%E5%85%88%E4%B8%8E%E5%B9%BF%E5%BA%A6%E4%BC%98%E5%85%88%E9%81%8D%E5%8E%86DOM-%E9%80%92%E5%BD%92%E4%B8%8E%E9%9D%9E%E9%80%92%E5%BD%92/" title="深度优先与广度优先遍历DOM(递归与非递归)">深度优先与广度优先遍历DOM(递归与非递归)</a><time datetime="2020-10-13T10:12:12.000Z" title="发表于 2020-10-13 18:12:12">2020-10-13</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2021 By 王宋晗</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
